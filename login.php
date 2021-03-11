@@ -9,7 +9,7 @@
 </head>
 <body>
     <?php 
-    $selected = "home";
+    $selected = "login";
     include 'block/nav.php';
     ?>
 </body>
