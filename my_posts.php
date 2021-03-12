@@ -10,7 +10,7 @@
 <body>
     <?php 
     $selected = "my_posts";
-    include 'block/nav.php';
+    require_once 'block/nav.php';
     ?>
 </body>
 </html>

@@ -10,7 +10,18 @@
 <body>
     <?php 
     $selected = "home";
-    include 'block/nav.php';
+    require_once 'block/nav.php';
+    require_once 'controller/post_manager.php';
+    $allPosts = post_manager::getInstance()->get_all_posts();
     ?>
+    <div id= "main">
+    <?php
+        foreach ($allPosts as $post) {
+            echo "<div class=\"post\">";
+            echo "<p class=\"title\"><span class=\"title_text\">" . $post["title"] . "</span></p>";
+            echo "</div>";
+        }
+    ?>
+    </div>
 </body>
 </html>

@@ -4,9 +4,20 @@
     margin-bottom: -10px;
     margin-top: -10px;
     text-decoration: none;
+    float: left;
 }
+#main{
+    text-align: center;
+}
+
+.title_text{
+    font-size: 20px;
+    background-color: lightgray;
+}
+
 body{
     background-color: #181818;
+    font-family: Arial;
 }
 
 #search_icon{
@@ -14,6 +25,7 @@ body{
     margin-bottom: -12px;
     margin-top: -12px;
 }    
+
 #navlist {
     list-style-type: none;
     margin-top: -10px;
@@ -22,9 +34,7 @@ body{
     overflow: hidden;
     background-color: #333;
 }
-#navlist li {
-    float: left;
-}
+
 .left{
     margin-left: -38px;
 }
