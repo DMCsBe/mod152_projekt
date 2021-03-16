@@ -43,7 +43,7 @@
             <input id="input_image" class="file" type="file" name="image">
             <label for="input_image">Choose a File</label>
             <br>
-            <input class="submit" type="submit" name="submitbutton" value="Submit post">
+            <input class="submit" type="submit" name="submitbutton" value="Create post">
         </form>
         <?php endif; ?>
         <?php if (!isset($_SESSION["logedin"])): ?>

@@ -29,7 +29,7 @@
         private function execute($query){
             $array = $this ->database -> query($query);
 			if (mysqli_num_rows($array)==0){
-				$array = [["title"=> "No posts yet", "post_id" => "noposts", "active" => 0, "image_ending" => "png"]];
+				$array = [["title"=> "No posts yet", "post_id" => "noposts", "active" => 0, "image_ending" => "png", "likes"=>"99999999", "license"=> "cc0"]];
 			}else{
 				$array = $this ->database -> toarray($array);
 			}
