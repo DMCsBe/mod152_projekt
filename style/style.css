@@ -1,149 +1,210 @@
 #navlist li {
-    list-style-type: none;
-    margin-bottom: -10px;
-    margin-top: -10px;
-    display: block;
-    text-decoration: none;
-    float: left;
+	list-style-type: none;
+	margin-bottom: -10px;
+	margin-top: -10px;
+	display: block;
+	text-decoration: none;
+	float: left;
 }
 
-input[type="file"]{
-    display: none;
+*{
+	font-family: Arial;
 }
 
-.top_level, #container{
-    margin-top: 100px;
-    text-align: center;
+input[type="file"] {
+	display: none;
 }
 
-#post_active{
-    margin-bottom: 50px;
-}
-#post_submit{
-    margin-top: 50px;
+.top_level,
+#container {
+	margin-top: 100px;
+	text-align: center;
 }
 
-#message{
-    margin-top: 100px;
-    color: white;
+#post_active {
+	margin-bottom: 50px;
+}
+
+.submit {
+	margin-top: 50px;
+	margin-bottom: 50px;
+	background-color: #1a73e8;
+	padding: 10px;
+	font-size: 18px;
+	border-radius: 5px;
+	border: 0px;
+}
+
+#message {
+	margin-top: 100px;
+	color: white;
 }
 
 button {
-    background-color: #1a73e8;
-    border-radius: 10px;
-    border: 0px;
+	background-color: #1a73e8;
+	border-radius: 10px;
+	border: 0px;
 }
 
-label{
-    color: #000000;
-    padding: 10px;
-    font-size: 20px;
+label[for="input_image"] {
+	color: #000000;
+	padding: 10px;
+	font-size: 20px;
+	background-color: #E0E0E0;
 }
 
-#navbar{
-    margin-top: -94px;
-    position: fixed;
-    width: 100%;
+#navbar {
+	margin-top: -94px;
+	position: fixed;
+	width: 100%;
 }
 
-select{
-    margin-top: 50px;
-    color: white;
-    background-color: transparent;
-    outline: none;
-    font-size: 20px;
-}
-select option{
-    background-color: transparent;
-    outline: none;
-    color: black;
+select {
+	margin-top: 50px;
+	color: white;
+	background-color: transparent;
+	outline: none;
+	font-size: 20px;
 }
 
-.input_text{
-    margin-top: 50px;
-    background-color: transparent;
-    border: 0px;
-    border-bottom: 1px solid;
-    outline: none;
-    text-align: center;
-    font-size: 20px;
-    width: 30%;
-    color: white;
-    margin-bottom: 5px;
+select option {
+	background-color: transparent;
+	outline: none;
+	color: black;
 }
 
-#main{
-    text-align: center;
+.input_text {
+	margin-top: 50px;
+	background-color: transparent;
+	border: 0px;
+	border-bottom: 1px solid;
+	outline: none;
+	text-align: center;
+	font-size: 20px;
+	width: 30%;
+	color: white;
+	margin-bottom: 5px;
 }
 
-.image{
-    width: 50%;
-    height: 30%;
+#main {
+	text-align: center;
 }
 
-.title{
-    margin-top: 100px;
-    margin-left: 25%;
-    margin-bottom: -20px;
-    padding-bottom: 20px;
-    background-color: lightgray;
-    width: 50%;
+.title {
+	margin-top: 100px;
+	margin-left: 25%;
+	margin-bottom: -20px;
+	padding-bottom: 20px;
+	background-color: lightgray;
+	width: 50%;
 }
 
-.title_text{
-    font-size: 20px;
-    text-align: center;
+.title_text {
+	font-size: 20px;
+	font-family: Arial, sans-serif;
+	text-align: center;
 }
 
-.image{
-    background-color: lightgray;
+.image {
+	width: 50%;
+	background-color: lightgray;
 }
 
-body{
-    background-color: #181818;
-    font-family: Arial;
+body {
+	background-color: #181818;
+	font-family: Arial;
 }
 
-#search_icon{
-    width: 30%;
-    margin-bottom: -12px;
-    margin-top: -12px;
-}    
+#search_icon {
+	width: 30%;
+	padding-bottom: 0px;
+	margin-bottom: -12px;
+	margin-top: -12px;
+}
 
 #navlist {
-    list-style-type: none;
-    margin-top: -10px;
-    margin-left: -10px;
-    margin-right: -8px;
-    overflow: hidden;
-    background-color: #333;
+	list-style-type: none;
+	margin-top: -10px;
+	margin-left: -10px;
+	margin-right: -8px;
+	overflow: hidden;
+	background-color: #333;
 }
 
-#left{
-    margin-left: -38px;
-}
-#right{
-    float: right;
-    margin-right: 20px;
+.div_like{
+	text-align: left;
+	margin-left: 25%;
 }
 
-#navlist li a {
-    display: block;
-    font-family: Arial,sans-serif;
-    color: white;
-    font-size: 15px;
-    text-align: center;
-    padding: 30px 35px 30px 35px;
-    text-decoration: none;
+.copyright{
+	margin-left: 35%;
+	color: white;
 }
 
-#navlist li #search_link{
-    padding: 30px 0px 30px 0px;
+.inline{
+	display: inline-block;
+}
+
+#left {
+	margin-left: -38px;
+}
+
+.title_div {
+	margin: auto;
+}
+
+.my_active {
+	float: right;
+}
+
+.my_post {
+	background-color: #E0E0E0;
+	border-bottom: 2px solid;
+	border-top: 2px solid;
+}
+
+.my_image {
+	display: inline-block;
+	margin-left: 20%;
+	margin-top: 5px;
+	width: 5%;
+	border: 5px solid;
+}
+
+.my_title {
+	position: fixed;
+	margin-top: 1%;
+	float: left;
+}
+
+#right {
+	float: right;
+	margin-right: 16px;
+}
+
+#navlist li a,
+.atoother {
+	display: block;
+	font-family: Arial, sans-serif;
+	color: white;
+	font-size: 15px;
+	text-align: center;
+	padding: 30px 35px 30px 35px;
+	text-decoration: none;
+}
+
+.atoother {
+	margin-top: -30px;
+}
+
+#navlist li #search_link {
+	padding: 30px 0px 30px 0px;
 }
 
 #navlist li a:hover {
-    background-color: #111;
+	background-color: #111;
 }
+
 #navlist .active {
-    background-color: #555;
+	background-color: #555;
 }

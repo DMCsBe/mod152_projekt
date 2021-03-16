@@ -16,12 +16,11 @@
     if (isset($_POST["submitbutton"])) {
         $creationResult = PostManager::getInstance()->createPost();
     }
-    $succsess = substr($creationResult,0,12) == "sucsessfully"
+    $succsess = substr($creationResult,0,12) == "sucsessfully";
     ?>
-
     <?php if (!$succsess): ?>
+        <?php if (isset($_SESSION["logedin"])): ?>
         <form class="top_level" enctype="multipart/form-data" method="POST">
-            <br>
             <input class="input_text" autocomplete="off" type="text" name="title" maxlength="30" placeholder="post title">
             <br>
             <select name="license">
@@ -44,10 +43,15 @@
             <input id="input_image" class="file" type="file" name="image">
             <label for="input_image">Choose a File</label>
             <br>
-            <input id="post_submit" type="submit" name="submitbutton" value="Submit post">
+            <input class="submit" type="submit" name="submitbutton" value="Submit post">
         </form>
+        <?php endif; ?>
+        <?php if (!isset($_SESSION["logedin"])): ?>
+            <div class="top_level">
+                <h1 style="color: white">You need to LogIn to be able to create a Post.</h1>
+            </div>
+        <?php endif; ?>
     <?php endif; ?>
-
     <?php if (isset($_POST["submitbutton"])): ?>
         <div id="container">
             <?php

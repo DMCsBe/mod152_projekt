@@ -14,10 +14,7 @@
     require_once 'controller/PostManager.php';
     $creationResult = null;
     if (isset($_POST["submitbutton"])) {
-        $creationResult = PostManager::getInstance()->login();
-    }
-    if (!isset($_SESSION["logedin"])){
-        $creationResult = "You are already Loged In";
+        $creationResult = PostManager::getInstance()->signup();
     }
     ?>
     <form class="top_level" enctype="multipart/form-data" method="POST">
@@ -25,10 +22,10 @@
         <br>
         <input class="input_text" autocomplete="off" type="password" name="password" maxlength="255" placeholder="password">
         <br>
-        <input class="submit" type="submit" name="submitbutton" value="LogIn">
-    </form>
+        <input class="submit" type="submit" name="submitbutton" value="Sing Up">
+    </div>
     <div style="text-align: center">
-        <a class="atoother" href="signup.php">Dont have a account yet? Sign Up</p>
+        <a class="atoother" href="login.php">Already have a account? Login</p>
     </div>
     <?php if (isset($_POST["submitbutton"])): ?>
         <div id="container">

@@ -21,10 +21,15 @@
 			}
 		}
 
+		public function getUserPost(){
+			$userid = $_SESSION["user_id"];
+			return $this -> execute("SELECT * FROM post WHERE user_id = \"". $userid ."\"");
+		}
+
         private function execute($query){
             $array = $this ->database -> query($query);
 			if (mysqli_num_rows($array)==0){
-				$array = [["title"=> "No posts yet", "post_id" => "noposts"]];
+				$array = [["title"=> "No posts yet", "post_id" => "noposts", "active" => 0, "image_ending" => "png"]];
 			}else{
 				$array = $this ->database -> toarray($array);
 			}
@@ -32,11 +37,59 @@
         }
 
         public function get_all_posts(){
-            return $this -> execute("SELECT * FROM post WHERE active = 1 ORDER BY created_date DESC");
+			if (isset($_POST["sort"])){
+				if($_POST["id"] == "new"){
+					$sort = "created_date DESC";
+				}else{
+					$sort = "likes DESC";
+				}
+			}else{
+				if($_SESSION["sort"] == "new"){
+					$sort = "created_date DESC";
+				}else{
+					$sort = "likes DESC";
+				}
+			}
+            return $this -> execute("SELECT * FROM post WHERE active = 1 ORDER BY ". $sort);
         }
 
+		public function likepost(){
+			if(!isset($_POST["id"])){
+				return "";
+			}
+			if(!isset($_POST["like"])){
+				return "";
+			}
+			if(!isset($_POST["likes"])){
+				return "";
+			}
+			try{
+				$likes = intval($_POST["likes"]) + 1;
+			}catch(Exception $e){
+				return "";
+			}
+			$this -> database -> query("UPDATE post SET likes=". $likes ." WHERE post_id = \"". $_POST["id"] ."\"");
+		}
+
+		public function changeactive(){
+			$postid = $_POST["id"];
+			if ($postid == "nopost"){
+				return "";
+			}
+			$current = $this -> execute("SELECT * FROM post WHERE post_id = \"". $postid ."\"");
+			if($current[0]["post_id"] == "noposts"){
+				return "";
+			}
+			if($current[0]["active"] == 1){
+				$will = 0;
+			}else{
+				$will = 1;
+			}
+			$this ->database -> query("UPDATE post SET active=". $will ." WHERE post_id = \"". $postid ."\"");
+		}
+
         public function createPost() {
-			$userid = 1;
+			$userid = $_SESSION["user_id"];
 
 			if (!isset($_POST["title"]) || empty($_POST["title"])) {
 				return "You must specify a title.";
@@ -138,6 +191,55 @@
 			}
 
 			return $thumbnailPath;
+		}
+
+		public function logout(){
+			$_SESSION["username"] = null;
+			$_SESSION["logedin"] = null;
+			$_SESSION["user_id"] = null;
+		}
+
+		public function login(){
+			$result = $this->execute("SELECT * FROM user WHERE username =\"". $_POST["username"] ."\"");
+			if($result == [["title"=> "No posts yet", "post_id" => "noposts"]]){
+				echo "FUCK ME";
+				return "Username or Password wrong";
+			}
+			$password = $result[0]["password"];
+			if (!password_verify ($_POST["password"] , $password)){
+				return "Username or Password wrong";
+			}
+			$_SESSION["username"] = $result[0]["username"];
+			$_SESSION["logedin"] = True;
+			$_SESSION["user_id"] = $result[0]["id"];
+			return "You are loged In";
+		}
+
+		public function signup(){
+			if (!isset($_POST["username"]) || empty($_POST["username"])) {
+				return "You must specify a username.";
+			}
+			if (!isset($_POST["password"]) || empty($_POST["password"])) {
+				return "You must specify a password.";
+			}
+			if(strlen($_POST["password"]) < 8 && strlen($_POST["password"]) > 256){
+				return "Password must be 8 characters or longer.";
+			}
+			if(strlen($_POST["username"]) > 20 && strlen($_POST["username"]) < 5){
+				return "Username must be between 5 and 20 characters.";
+			}
+			if (preg_match('/[\'^%&*()}{#~?><>,|=+¬-]/', $_POST["username"])){
+				return "Username cant have any special characters.";
+			}
+			if (!preg_match('/[\'^£$%&*()}{@#~?><!>,|=_+¬-]/', $_POST["password"])){
+					return "Password needs at least 1 special character.";
+			}
+			$password = password_hash($_POST["password"], PASSWORD_ARGON2I);
+			$result = $this->database->query("INSERT INTO user(username, password) VALUES(?, ?)", array($_POST["username"],$password), array("s", "s"));
+			if ($result !== true) {
+				return "An error occurred while saving your Account Data.";
+			}
+			return "Created account succsessfully";
 		}
 
 	}
